@@ -4,12 +4,14 @@ from flask import render_template
 from Lista import Lista
 from Pila import Pila
 from Cola import Cola
+from Matriz import Matriz
 
 app = Flask(__name__)
 
 lista= Lista()
 pila = Pila()
 cola=Cola()
+matriz=Matriz()
 
 class WS():
 	# METODOS DE LA LISTA
@@ -29,11 +31,10 @@ class WS():
 	# BORRAR
 	@app.route('/borrar_en_lista',methods=['POST'])
 	def borrar_lista():
-		valor= lista.consultar(request.form['nombre'])
-		if valor==-1:
-			return "no existe"
+		if lista.borrar(request.form['nombre']):
+			return "borrado satisfactoriamente"
 		else:
-			return "se encuentra en el indice "+str(valor)
+			return "el elemento no se ha encontrado"
 	# METODOS DE LA PILA 
 	# PUSH
 	@app.route('/push',methods=['POST'])
@@ -64,6 +65,23 @@ class WS():
 		else:
 			return "valor dequeque: "+str(valor)
 
+	# MATRIZ
+	# AGREGAR VALOR
+	@app.route('/addMat',methods=['POST'])
+	def addMat():
+		if len(request.form['nombre'].split("@"))==2:
+			valor = matriz.agregar(request.form['nombre'])
+			return "se ha ingresado correctamente"
+		else:
+			return "dato no valido"
+	# CONSULTAR POR LETRA
+	@app.route('/byLetra',methods=['POST'])
+	def byLetra():
+		return matriz.consultaLetra(request.form['nombre'])
+	# CONSULTAR POR DOMINIO
+	@app.route('/bydomain',methods=['POST'])
+	def byDomain():
+		return matriz.consultarDominio(request.form['nombre'])
 
 	@app.route('/recuperar_lista')
 	def recuperar_lista():

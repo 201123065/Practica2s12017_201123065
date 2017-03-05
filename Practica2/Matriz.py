@@ -23,6 +23,9 @@ class Matriz():
 		NODOLETRA=NodoMatriz()
 		# NODOLETRA=[]
 		NODOLETRA.titulo=usuario[0]
+		print usuario[0]
+		print cad[1]
+		print cad[0]
 		# NODOLETRA=[titulo=u]
 		NODORAIZ=NodoMatriz()
 		# NODORAIZ=[]
@@ -40,8 +43,10 @@ class Matriz():
 			# NODODOMINIO=[titulo=dom.com, abajo=NODORAIZ[titulo=user@dom.com]]
 			NODOLETRA.derecha=NODORAIZ
 			# NODOLETRA=[titulo=u,derecha=NODORAIZ[titulo=user@dom.com]]
+			print "esta virgen"
 			return True
 		else:
+			print "ya tiene uno"
 			#posee al menos 1 dato
 			punteroDominio=self.raiz
 			# punteroDominio=[derecha=NODODOMINIO,abajo=NODOLETRA]
@@ -91,5 +96,52 @@ class Matriz():
 				punteroDominio=punteroDominio.derecha
 				if punteroDominio.titulo==cad[1]:
 					# verificar si el puntero dominio es similar a la cadena ingresada
-						
+						while punteroDominio.abajo!=None:
+							# llegar hasta el final
+							punteroDominio=punteroDominio.abajo
+						punteroDominio.abajo=NODORAIZ
+						return True
+			# no existe ni dominio ni letra, lo cual es raro 
+			return False
+
+	def consultaLetra(self,letra):
+		if self.raiz!=None:
+			aux=self.raiz.abajo
+			while aux.abajo!=None:
+				if aux.titulo==letra:
+					cadena= " "
+					while aux.derecha!=None:
+						profundo=aux
+						cadena=cadena+"-"+aux.titulo
+						while profundo.profundo!=None:
+							profundo=profundo.profundo
+							cadena=cadena+","+profundo.titulo
+						aux=aux.derecha
+					return "lista encontrada :" +cadena
+				aux=aux.abajo
+			return "no existe indice con esa letra"
+		else:
+			return "la matriz esta vacia"
+	def consultarDominio(self,letra):
+		if self.raiz!=None:
+			aux=self.raiz.derecha
+			while aux.derecha!=None:
+				if aux.titulo==letra:
+					cadena= " "
+					while aux.abajo!=None:
+						profundo=aux
+						cadena=cadena+"-"+aux.titulo
+						while profundo.profundo!=None:
+							profundo=profundo.profundo
+							cadena=cadena+","+profundo.titulo
+						aux=aux.abajo
+					return "lista encontrada :" +cadena
+				aux=aux.derecha
+			return "no existe indice con esa letra"
+		else:
+			return "la matriz esta vacia"
+
+
+
+
 

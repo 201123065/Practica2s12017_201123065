@@ -27,10 +27,10 @@ public class Panel extends javax.swing.JFrame {
     public Panel() {
         initComponents();
         valor=0;
-        B1.setVisible(false);
-        B2.setVisible(false);
-        Query.setVisible(false);
-        dominio.setVisible(false);
+        Agregar.setVisible(false);
+        Buscar.setVisible(false);
+        Borrar.setVisible(false);
+        Dominio.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -41,10 +41,10 @@ public class Panel extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
-        B1 = new javax.swing.JButton();
-        B2 = new javax.swing.JButton();
-        Query = new javax.swing.JButton();
-        dominio = new javax.swing.JButton();
+        Agregar = new javax.swing.JButton();
+        Buscar = new javax.swing.JButton();
+        Borrar = new javax.swing.JButton();
+        Dominio = new javax.swing.JButton();
         titulo = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -61,28 +61,33 @@ public class Panel extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 153));
 
-        B1.setText("Agregar");
-        B1.addActionListener(new java.awt.event.ActionListener() {
+        Agregar.setText("Agregar");
+        Agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B1ActionPerformed(evt);
+                AgregarActionPerformed(evt);
             }
         });
 
-        B2.setText("Borrar");
-        B2.addActionListener(new java.awt.event.ActionListener() {
+        Buscar.setText("Buscar");
+        Buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B2ActionPerformed(evt);
+                BuscarActionPerformed(evt);
             }
         });
 
-        Query.setText("Buscar");
-        Query.addActionListener(new java.awt.event.ActionListener() {
+        Borrar.setText("Borrar");
+        Borrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                QueryActionPerformed(evt);
+                BorrarActionPerformed(evt);
             }
         });
 
-        dominio.setText("Dominio");
+        Dominio.setText("Dominio");
+        Dominio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DominioActionPerformed(evt);
+            }
+        });
 
         titulo.setForeground(new java.awt.Color(255, 255, 255));
         titulo.setText("---.---.---.---.---");
@@ -95,10 +100,10 @@ public class Panel extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField1)
-                    .addComponent(B1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(B2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Query, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dominio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Agregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Borrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Dominio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -110,13 +115,13 @@ public class Panel extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(B1)
+                .addComponent(Agregar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(B2)
+                .addComponent(Buscar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Query)
+                .addComponent(Borrar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dominio)
+                .addComponent(Dominio)
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
@@ -235,66 +240,51 @@ public class Panel extends javax.swing.JFrame {
     private void ListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaActionPerformed
         funcion=0;
         titulo.setText("Lista");
-        B1.setText("Agregar");
-        B2.setText("Borrar");
-        Query.setVisible(true);
-        B1.setVisible(true);
-        B2.setVisible(true);
-        dominio.setVisible(false);
+        Agregar.setText("Agregar");
+        Buscar.setText("Buscar");
+        Borrar.setText("Borrar");
+        Borrar.setVisible(true);
+        Agregar.setVisible(true);
+        Buscar.setVisible(true);
+        Dominio.setVisible(false);
         
     }//GEN-LAST:event_ListaActionPerformed
     
     private void DispersaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DispersaActionPerformed
         funcion=1;
         titulo.setText("Matriz dispersa");
-        B1.setText("Agregar");
-        B2.setText("Borrar");
-        B1.setVisible(true);
-        B2.setVisible(true);
-        Query.setVisible(true);
-        dominio.setVisible(true);
+        Agregar.setText("Agregar");
+        Buscar.setText("Buscar Letra");
+        Borrar.setText("Borrar de la matriz");
+        Agregar.setVisible(true);
+        Buscar.setVisible(true);
+        Borrar.setVisible(true);
+        Dominio.setVisible(true);
     }//GEN-LAST:event_DispersaActionPerformed
 
     private void ColaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColaActionPerformed
         funcion=2;
         titulo.setText("Cola");    
-        B1.setText("queque");
-        Query.setText("dequeque");
-        B1.setVisible(true);
-        Query.setVisible(true);
-        B2.setVisible(false);
-        dominio.setVisible(false);
+        Agregar.setText("queque");
+        Borrar.setText("dequeque");
+        Agregar.setVisible(true);
+        Borrar.setVisible(true);
+        Buscar.setVisible(false);
+        Dominio.setVisible(false);
     }//GEN-LAST:event_ColaActionPerformed
 
     private void PilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PilaActionPerformed
         funcion=3;
         titulo.setText("Pila");   
-        B1.setText("push"); 
-        Query.setText("pop");
-        B1.setVisible(true);
-        Query.setVisible(true);
-        B2.setVisible(false);
-        dominio.setVisible(false);
+        Agregar.setText("push"); 
+        Borrar.setText("pop");
+        Agregar.setVisible(true);
+        Borrar.setVisible(true);
+        Buscar.setVisible(false);
+        Dominio.setVisible(false);
     }//GEN-LAST:event_PilaActionPerformed
 
-    private void B1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B1ActionPerformed
-        switch (funcion){
-            case 0:
-                agregar("insertar_lista");
-                break;
-            case 2:
-                agregar("queque");
-                break;
-            case 3:
-                agregar("push");
-                break;
-            default:
-                break;
-                
-        }
-    }//GEN-LAST:event_B1ActionPerformed
-
-    private void agregar(String ruta){
+    private void openswitch(String ruta){
         String nombre = jTextField1.getText();
         RequestBody formBody = new FormEncodingBuilder()
                 .add("nombre", nombre)
@@ -304,35 +294,56 @@ public class Panel extends javax.swing.JFrame {
             
         
     }
-    private void QueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QueryActionPerformed
-        switch(funcion){
+    private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
+        switch (funcion){
             case 0:
-                quitar("consultar_en_lista");
+                openswitch("insertar_lista");
+                break;
+            case 1:
+                openswitch("addMat");
                 break;
             case 2:
-                quitar("dequeque");
+                openswitch("queque");
                 break;
             case 3:
-                quitar("pop");
+                openswitch("push");
+                break;
+            default:
+                break;
+                
+        }
+    }//GEN-LAST:event_AgregarActionPerformed
+
+    private void BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarActionPerformed
+        switch(funcion){
+            case 0:
+                openswitch("borrar_en_lista");
+                break;
+            case 1:
+                openswitch("eliminar_mat");
+            case 2:
+                openswitch("dequeque");
+                break;
+            case 3:
+                openswitch("pop");
                 break;
         }
-        if (funcion==0){
+    }//GEN-LAST:event_BorrarActionPerformed
+    
+    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
+        switch(funcion){
+            case 0:
+                openswitch("consultar_en_lista");
+                break;
+            case 1:
+                openswitch("byLetra");
         }
-    }//GEN-LAST:event_QueryActionPerformed
+    }//GEN-LAST:event_BuscarActionPerformed
 
-    private void B2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B2ActionPerformed
-                // TODO add your handling code here:
-    }//GEN-LAST:event_B2ActionPerformed
-    private void quitar(String ruta){
-        String nombre = jTextField1.getText();
-        RequestBody formBody = new FormEncodingBuilder()
-                .add("nombre", nombre)
-                .build();
-        String r = getString(ruta, formBody); 
-        
-        System.out.println(r + "-");
-        
-    }
+    private void DominioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DominioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DominioActionPerformed
+    
     
     public static String getString(String metodo, RequestBody formBody) {
 
@@ -391,14 +402,14 @@ public class Panel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton B1;
-    private javax.swing.JButton B2;
+    private javax.swing.JButton Agregar;
+    private javax.swing.JButton Borrar;
+    private javax.swing.JButton Buscar;
     private javax.swing.JButton Cola;
     private javax.swing.JButton Dispersa;
+    private javax.swing.JButton Dominio;
     private javax.swing.JButton Lista;
     private javax.swing.JButton Pila;
-    private javax.swing.JButton Query;
-    private javax.swing.JButton dominio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

@@ -30,7 +30,7 @@ class Lista():
 					self.ultimo=None
 					return True
 				else:
-					aux=aux.siguiente
+					self.raiz=aux.siguiente
 					return True
 			while aux.siguiente!=None:
 				temp=aux

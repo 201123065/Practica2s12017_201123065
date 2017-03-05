@@ -32,7 +32,7 @@ class Pila():
 				tmp=tmp.siguiente
 			temporal = str(self.tope.valor)
 			tmp.siguiente=None
-			self.base=tmp
+			self.tope=tmp
 			return temporal
 
 

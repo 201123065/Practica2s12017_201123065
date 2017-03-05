@@ -2,11 +2,14 @@ from flask import Flask
 from flask import request
 from flask import render_template
 from Lista import Lista
+from Pila import Pila
+from Cola import Cola
 
 app = Flask(__name__)
 
 lista= Lista()
 pila = Pila()
+cola=Cola()
 
 class WS():
 	# METODOS DE LA LISTA
@@ -40,11 +43,26 @@ class WS():
 	# POP
 	@app.route('/pop',methods=['POST'])
 	def pop():
-		valor= lista.consultar(request.form['nombre'])
+		valor= pila.pop()
 		if valor==-1:
 			return "no existe"
 		else:
-			return "se encuentra en el indice "+str(valor)
+			return "valor pop: "+str(valor)
+
+	# METODOS DE LA COLA
+	# QUEQUE
+	@app.route('/queque',methods=['POST'])
+	def queque():
+		cola.queque(request.form['nombre'])
+		return "se ha ingresado correctamente"
+	# DEQUEQUE
+	@app.route('/dequeque',methods=['POST'])
+	def dequeque():
+		valor= cola.dequeque()
+		if valor==-1:
+			return "no existe"
+		else:
+			return "valor dequeque: "+str(valor)
 
 
 	@app.route('/recuperar_lista')

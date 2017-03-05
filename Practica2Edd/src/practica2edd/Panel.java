@@ -69,6 +69,11 @@ public class Panel extends javax.swing.JFrame {
         });
 
         B2.setText("Borrar");
+        B2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B2ActionPerformed(evt);
+            }
+        });
 
         Query.setText("Buscar");
         Query.addActionListener(new java.awt.event.ActionListener() {
@@ -254,10 +259,10 @@ public class Panel extends javax.swing.JFrame {
         funcion=2;
         titulo.setText("Cola");    
         B1.setText("queque");
-        B2.setText("dequeque");
+        Query.setText("dequeque");
         B1.setVisible(true);
-        B2.setVisible(true);
-        Query.setVisible(false);
+        Query.setVisible(true);
+        B2.setVisible(false);
         dominio.setVisible(false);
     }//GEN-LAST:event_ColaActionPerformed
 
@@ -265,39 +270,69 @@ public class Panel extends javax.swing.JFrame {
         funcion=3;
         titulo.setText("Pila");   
         B1.setText("push"); 
-        B2.setText("pop");
+        Query.setText("pop");
         B1.setVisible(true);
-        B2.setVisible(true);
-        Query.setVisible(false);
+        Query.setVisible(true);
+        B2.setVisible(false);
         dominio.setVisible(false);
     }//GEN-LAST:event_PilaActionPerformed
 
     private void B1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B1ActionPerformed
-        if (funcion==0){
-        String nombre = jTextField1.getText();
-        RequestBody formBody = new FormEncodingBuilder()
-                .add("nombre", nombre)
-                .add("edad", "4")
-                .build();
-        String r = getString("insertar_lista", formBody); 
-        System.out.println(r + "---");
-            
+        switch (funcion){
+            case 0:
+                agregar("insertar_lista");
+                break;
+            case 2:
+                agregar("queque");
+                break;
+            case 3:
+                agregar("push");
+                break;
+            default:
+                break;
+                
         }
-        
     }//GEN-LAST:event_B1ActionPerformed
 
-    private void QueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QueryActionPerformed
-        if (funcion==0){
+    private void agregar(String ruta){
         String nombre = jTextField1.getText();
         RequestBody formBody = new FormEncodingBuilder()
                 .add("nombre", nombre)
                 .build();
-        String r = getString("consultar", formBody); 
+        String r = getString(ruta, formBody); 
         System.out.println(r + "---");
             
+        
+    }
+    private void QueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QueryActionPerformed
+        switch(funcion){
+            case 0:
+                quitar("consultar_en_lista");
+                break;
+            case 2:
+                quitar("dequeque");
+                break;
+            case 3:
+                quitar("pop");
+                break;
+        }
+        if (funcion==0){
         }
     }//GEN-LAST:event_QueryActionPerformed
 
+    private void B2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B2ActionPerformed
+                // TODO add your handling code here:
+    }//GEN-LAST:event_B2ActionPerformed
+    private void quitar(String ruta){
+        String nombre = jTextField1.getText();
+        RequestBody formBody = new FormEncodingBuilder()
+                .add("nombre", nombre)
+                .build();
+        String r = getString(ruta, formBody); 
+        
+        System.out.println(r + "-");
+        
+    }
     
     public static String getString(String metodo, RequestBody formBody) {
 

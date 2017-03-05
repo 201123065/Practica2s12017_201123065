@@ -24,51 +24,116 @@ if __name__=='__main__':
 	app.run(debug=True)
 
 
-class Estructura:
+class Estructura_Lista_Simple:
 	def __init__(self):
-		self.nombre =None
-		self.edad=0
+		self.indice=0
+		self.palabra=None
+		self.siguiente= None
+
+class Matriz_Dispersa:
+	def __init__(self):
+		self.derecha=None
+		self.izquierda=None
+		self.arriba=None
+		self.abajo=None
+		self.usuario=None
+		self.dominio=None
+
+class Cola:
+	def __init__(self):
+		self.valor=0
 		self.siguiente=None
+
+class Pila:
+	def __init__(self):
+		self.valor=0
+		self.siguiente=None
+
 
 class Lista:
 	def __init__(self):
-		raiz = Estructura()
-
-	def insertar(self,Estructura):
-		if self.raiz.nombre==None:
-			self.raiz ==Estructura
+		raiz=Estructura_Lista_Simple()
+	def insertar(self,Lista):
+		if self.raiz.palabra==None:
+			self.raiz=Lista
 		else:
-			aux = self.raiz
+			aux=self.raiz
 			while True:
-				if aux.siguiente!=None:
-					aux.siguiente=Estructura
+				if aux.siguiente==None:
+					aux.siguiente=Lista
 					break
 				else:
 					aux=aux.siguiente
+	def dato(self):
+		aux=self.raiz
+		while aux.siguiente!=None:
+			aux=aux.siguiente
+		return aux.dato
 
-	def consultar(self):
+	def consultar(self,dato):
 		aux = self.raiz
+		aux2 = self.raiz
 		if aux.nombre == None:
-			print "error"
+			return "NO SE ENCONTRÓ EL DATO"
 		else:
-			print aux.nombre
-			print aux.edad
+			if aux.nombre == dato :
+				if aux.siguiente == None:
+					self.raiz = Nodo()
+				else :
+					self.raiz = aux.siguiente
+			else:
+				while aux.siguiente != None and t:
+					aux = aux.siguiente
+					if aux.nombre == elemento :
+						aux2.siguiente = aux.siguiente
+						aux = None
+						return "EL DATO SE ENCUENTRA EN EL ÍNDICE "+aux.indice
+					aux2 = aux2.siguiente
+				return "NO SE ENCONTRÓ EL DATO"
 
-			while aux.siguiente!=None:
-				aux= aux.siguiente
-				print aux.nombre
-				print edad
 
-	def eliminar(self):
-		aux=self.nombre
-		if(aux.nombre==None):
-			print "embti"
+class Estructura_cola:
+	def __init__(self):
+		raiz=Lista_Simple()
+	def insertar(self,Lista):
+		if self.raiz.palabra=None:
+			self.raiz=Lista
 		else:
-			elemento.raw_input("escribe el nombre a eliminar")
-			while aux.nombre!=None:
-				if(aux.nombre==elemento):
-					print ":F"
-					
+			aux=self.raiz
+			while True:
+				if aux.siguiente==None:
+					aux.siguiente=Lista
+					break
+				else:
+					aux=aux.siguiente
+	def dato(self):
+		aux=self.raiz
+		while aux.siguiente!=None:
+			aux=aux.siguiente
+		return aux.dato
+
+	def consultar(self,dato):
+		aux = self.raiz
+		aux2 = self.raiz
+		if aux.nombre == None:
+			return "NO SE ENCONTRÓ EL DATO"
+		else:
+			if aux.nombre == dato :
+				if aux.siguiente == None:
+					self.raiz = Nodo()
+				else :
+					self.raiz = aux.siguiente
+			else:
+				while aux.siguiente != None and t:
+					aux = aux.siguiente
+					if aux.nombre == elemento :
+						aux2.siguiente = aux.siguiente
+						aux = None
+						return "EL DATO SE ENCUENTRA EN EL ÍNDICE "+aux.indice
+					aux2 = aux2.siguiente
+				return "NO SE ENCONTRÓ EL DATO"
+
+
 
 
 

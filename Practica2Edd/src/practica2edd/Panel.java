@@ -71,6 +71,11 @@ public class Panel extends javax.swing.JFrame {
         B2.setText("Borrar");
 
         Query.setText("Buscar");
+        Query.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                QueryActionPerformed(evt);
+            }
+        });
 
         dominio.setText("Dominio");
 
@@ -281,11 +286,23 @@ public class Panel extends javax.swing.JFrame {
         
     }//GEN-LAST:event_B1ActionPerformed
 
+    private void QueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QueryActionPerformed
+        if (funcion==0){
+        String nombre = jTextField1.getText();
+        RequestBody formBody = new FormEncodingBuilder()
+                .add("nombre", nombre)
+                .build();
+        String r = getString("consultar", formBody); 
+        System.out.println(r + "---");
+            
+        }
+    }//GEN-LAST:event_QueryActionPerformed
+
     
     public static String getString(String metodo, RequestBody formBody) {
 
         try {
-            URL url = new URL("http://0.0.0.1:5000/" + metodo);
+            URL url = new URL("http://127.0.0.1:5000/" + metodo);
             Request request = new Request.Builder().url(url).post(formBody).build();
             Response response = webClient.newCall(request).execute();//Aqui obtiene la respuesta en dado caso si hayas pues un return en python
             String response_string = response.body().string();//y este seria el string de las respuesta

@@ -218,8 +218,8 @@ public class Panel extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 705, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,9 +241,7 @@ public class Panel extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,9 +319,11 @@ public class Panel extends javax.swing.JFrame {
                 break;
             case 2:
                 JOptionPane.showMessageDialog(null,openswitch("queque"));
+                cad = openswitch("plotCola");
                 break;
             case 3:
                 JOptionPane.showMessageDialog(null,openswitch("push"));
+                cad = openswitch("plotPila");
                 break;
             default:
                 break;
@@ -347,14 +347,17 @@ public class Panel extends javax.swing.JFrame {
         switch(funcion){
             case 0:
                 JOptionPane.showMessageDialog(null,openswitch("borrar_en_lista"));
+                cad = openswitch("plot_Lista");
                 break;
             case 1:
                 JOptionPane.showMessageDialog(null,openswitch("del_val"));
             case 2:
                 JOptionPane.showMessageDialog(null,openswitch("dequeque"));
+                cad = openswitch("plotCola");
                 break;
             case 3:
                 JOptionPane.showMessageDialog(null,openswitch("pop"));
+                cad = openswitch("plotPila");
                 break;
         }
         refreshG(cad);

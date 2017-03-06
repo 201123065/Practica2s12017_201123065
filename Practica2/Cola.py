@@ -30,6 +30,19 @@ class Cola():
 				self.base=self.base.siguiente
 			return str(tmp)
 
+	def plotCola(self):
+		if self.base!=None:
+			tmp = self.base
+			cad = " "
+			if tmp.siguiente==None:
+				return str(self.base.valor)+";"
+			while tmp.siguiente!=None:
+				cad = cad +"\n"+str(tmp.valor)+"->"+str(tmp.siguiente.valor)+";"
+				tmp = tmp.siguiente
+			return cad
+
+		return " "
+
 
 			
 

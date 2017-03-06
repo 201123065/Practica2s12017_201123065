@@ -53,6 +53,12 @@ class WS():
 			return "no existe"
 		else:
 			return "valor pop: "+str(valor)
+	
+	@app.route('/plotPila',methods=['POST'])
+	def plotpila():
+		return pila.plotPila()
+	
+
 
 #COLA
 	# QUEQUE
@@ -68,6 +74,12 @@ class WS():
 			return "no existe"
 		else:
 			return "valor dequeque: "+str(valor)
+
+	@app.route('/plotCola',methods=['POST'])
+	def plotCola():
+		return cola.plotCola()
+
+
 
 # MATRIZ
 	# AGREGAR VALOR
@@ -86,6 +98,7 @@ class WS():
 	@app.route('/bydomain',methods=['POST'])
 	def byDomain():
 		return matriz.consultarDominio(request.form['nombre'])
+
 	@app.route('/del_val',methods=['POST'])
 	def delVal():
 		if matriz.eliminarDato(request.form['nombre']):

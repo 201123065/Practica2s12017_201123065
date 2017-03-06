@@ -35,6 +35,20 @@ class Pila():
 			self.tope=tmp
 			return temporal
 
+	def plotPila(self):
+		if self.base!=None:
+			if self.base.siguiente==None:
+				return str(self.base.valor)+";"
+			tmp=self.base
+			cat = " "
+			while tmp.siguiente!=None:
+				cat=cat+"\n"+str(tmp.valor)+"->"+str(tmp.siguiente.valor)+";"
+				tmp=tmp.siguiente
+			return cat
+
+		return " "
+
+
 
 
 			

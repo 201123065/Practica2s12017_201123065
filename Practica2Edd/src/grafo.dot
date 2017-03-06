@@ -1,5 +1,2 @@
-digraph G {
-dos->cuatro;
-cuatro->seis;
-seis->uno;
-uno->se;}
+digraph G { 
+asd->asdsa;}

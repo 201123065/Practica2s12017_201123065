@@ -17,6 +17,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import static practica2edd.Fusion.webClient;
 
 /**
@@ -24,6 +25,7 @@ import static practica2edd.Fusion.webClient;
  * @author marcosmayen
  */
 public class Panel extends javax.swing.JFrame {
+    private String cad ="";
     private int valor;
     private int funcion;
     private String fileInputPath;
@@ -51,6 +53,7 @@ public class Panel extends javax.swing.JFrame {
         Borrar = new javax.swing.JButton();
         Dominio = new javax.swing.JButton();
         titulo = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         Lista = new javax.swing.JButton();
@@ -95,6 +98,13 @@ public class Panel extends javax.swing.JFrame {
         titulo.setForeground(new java.awt.Color(255, 255, 255));
         titulo.setText("---.---.---.---.---");
 
+        jButton1.setText("R");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -108,23 +118,27 @@ public class Panel extends javax.swing.JFrame {
                     .addComponent(Borrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Dominio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(titulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(7, 7, 7)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Agregar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Buscar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Dominio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Borrar)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(Agregar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Buscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Dominio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Borrar))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -169,7 +183,7 @@ public class Panel extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Lista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Dispersa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                    .addComponent(Dispersa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Cola, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Pila, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -229,7 +243,7 @@ public class Panel extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,34 +300,41 @@ public class Panel extends javax.swing.JFrame {
         Dominio.setVisible(false);
     }//GEN-LAST:event_PilaActionPerformed
 
-    private void openswitch(String ruta){
+    private String openswitch(String ruta){
         String nombre = jTextField1.getText();
         RequestBody formBody = new FormEncodingBuilder()
                 .add("nombre", nombre)
                 .build();
         String r = getString(ruta, formBody); 
         System.out.println(r + "---");
-            
+        return r;
         
     }
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         switch (funcion){
             case 0:
-                openswitch("insertar_lista");
+                JOptionPane.showMessageDialog(null,openswitch("insertar_lista"));
+                cad = openswitch("plot_Lista");
                 break;
             case 1:
-                openswitch("addMat");
+                JOptionPane.showMessageDialog(null,openswitch("addMat"));
                 break;
             case 2:
-                openswitch("queque");
+                JOptionPane.showMessageDialog(null,openswitch("queque"));
                 break;
             case 3:
-                openswitch("push");
+                JOptionPane.showMessageDialog(null,openswitch("push"));
                 break;
             default:
                 break;
         }
-        grafo.Imagen("cadena");
+        refreshG(cad);
+    }//GEN-LAST:event_AgregarActionPerformed
+    ImageIcon ii;
+    ImageIcon grafiti;
+    
+    private void refreshG(String cad){
+        grafo.Imagen(cad);
         
         String ruta ="/grafo.dot.png";
         jLabel2.removeAll();
@@ -321,38 +342,43 @@ public class Panel extends javax.swing.JFrame {
         grafiti = new ImageIcon(ii.getImage().getScaledInstance(jLabel2.getWidth(), jLabel2.getHeight(), Image.SCALE_DEFAULT));
         jLabel2.setIcon(grafiti);
         
-    }//GEN-LAST:event_AgregarActionPerformed
-    ImageIcon ii;
-    ImageIcon grafiti;
+    }
     private void BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarActionPerformed
         switch(funcion){
             case 0:
-                openswitch("borrar_en_lista");
+                JOptionPane.showMessageDialog(null,openswitch("borrar_en_lista"));
                 break;
             case 1:
-                openswitch("del_val");
+                JOptionPane.showMessageDialog(null,openswitch("del_val"));
             case 2:
-                openswitch("dequeque");
+                JOptionPane.showMessageDialog(null,openswitch("dequeque"));
                 break;
             case 3:
-                openswitch("pop");
+                JOptionPane.showMessageDialog(null,openswitch("pop"));
                 break;
         }
+        refreshG(cad);
     }//GEN-LAST:event_BorrarActionPerformed
     
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
         switch(funcion){
             case 0:
-                openswitch("consultar_en_lista");
+                JOptionPane.showMessageDialog(null,openswitch("consultar_en_lista"));
                 break;
             case 1:
-                openswitch("byLetra");
+                JOptionPane.showMessageDialog(null,openswitch("byLetra"));
         }
+        refreshG(cad);
     }//GEN-LAST:event_BuscarActionPerformed
 
     private void DominioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DominioActionPerformed
-        openswitch("bydomain");
+        JOptionPane.showMessageDialog(null,openswitch("bydomain"));
+        refreshG(cad);
     }//GEN-LAST:event_DominioActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        refreshG(cad);
+    }//GEN-LAST:event_jButton1ActionPerformed
     
     
     public static String getString(String metodo, RequestBody formBody) {
@@ -420,6 +446,7 @@ public class Panel extends javax.swing.JFrame {
     private javax.swing.JButton Dominio;
     private javax.swing.JButton Lista;
     private javax.swing.JButton Pila;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

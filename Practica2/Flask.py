@@ -35,6 +35,10 @@ class WS():
 			return "borrado satisfactoriamente"
 		else:
 			return "el elemento no se ha encontrado"
+
+	@app.route('/plot_Lista',methods=['POST'])
+	def plotLista():
+		return lista.plotLista("")
 #PILA 
 	# PUSH
 	@app.route('/push',methods=['POST'])

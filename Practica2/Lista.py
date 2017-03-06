@@ -52,6 +52,18 @@ class Lista():
 				return aux.indice
 		return -1
 
+	def plotLista(self,p):
+		aux=self.raiz
+		cad=""
+		if aux.siguiente==None:
+			return aux.palabra+";"
+		else:
+			while aux.siguiente!=None:
+				cad=cad+"\n"+aux.palabra+"->"+aux.siguiente.palabra+";"
+				aux=aux.siguiente;
+		return cad
+				
+
 
 
 

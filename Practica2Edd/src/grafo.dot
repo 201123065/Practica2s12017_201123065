@@ -1,5 +1,5 @@
 digraph G {
-	main -> parse ;
-	main -> init;
-	init->v4;
-}
+dos->cuatro;
+cuatro->seis;
+seis->uno;
+uno->se;}

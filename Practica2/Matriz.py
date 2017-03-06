@@ -186,12 +186,15 @@ class Matriz():
 			nodoletras = self.raiz
 			nododominio = self.raiz
 			subletras= 'node0 [label = "'
+			subnodos_mat=" "
 			valor=0
 			while NodoLetra.abajo!=None:
 				subletras=subletras+"<f"+str(valor)+">|"
+				subnodos_mat=subnodos_mat+"\n"+"node0:f"+str(valor)+"->node"
 				NodoLetra=NodoLetra.abajo
+
 			subletras=subletras+'",height=2.5];'
-			
+
 			return subletras
 
 		return " "

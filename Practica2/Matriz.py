@@ -179,9 +179,23 @@ class Matriz():
 		return False
 
 	def asignaMat(self):
-		cad = " node [shape=record,width=.1,height=.1];"
-		nodoletras = self.raiz
-		nododominio = self.raiz
+		if self.raiz!=None:
+			cad = " node [shape=record,width=.1,height=.1];"
+			cad = cad + " rankdir=LR;"
+			cad = cad + "node [shape=record,width=.1,height=.1];"
+			nodoletras = self.raiz
+			nododominio = self.raiz
+			subletras= 'node0 [label = "'
+			valor=0
+			while NodoLetra.abajo!=None:
+				subletras=subletras+"<f"+str(valor)+">|"
+				NodoLetra=NodoLetra.abajo
+			subletras=subletras+'",height=2.5];'
+			
+			return subletras
+
+		return " "
+
 
 
 

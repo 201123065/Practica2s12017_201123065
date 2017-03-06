@@ -178,6 +178,10 @@ class Matriz():
 									return True
 		return False
 
+	def asignaMat(self):
+		cad = " node [shape=record,width=.1,height=.1];"
+		nodoletras = self.raiz
+		nododominio = self.raiz
 
 
 

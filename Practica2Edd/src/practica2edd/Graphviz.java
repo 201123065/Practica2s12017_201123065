@@ -10,9 +10,10 @@ package practica2edd;
  * @author marcosmayen
  */
 public class Graphviz {
-    public void Imagen(){
+    public void Imagen(String cadena){
         try {
             //raiz donde se encuentra el grafo
+            System.out.println(System.getProperty("user.dir")+"/grafo.dot");
             String fileInputPath = System.getProperty("user.dir")+"/grafo.dot";
             //ejecutable dot, -T, formato, ejecucion, entrada
             String [] cmd = {"/usr/local/bin/dot","-T","png", "-O",fileInputPath}; //Comando de apagado en windows
@@ -20,17 +21,6 @@ public class Graphviz {
         } catch (Exception ex) {
             System.out.println("resulta que no es mac o linux");
         }
-        try{
-            String ruta="c:\\Archivos de programa\\Graphviz 2.28\\bin\\dot.exe";
-            String fileInputPath = System.getProperty("user.dir")+"\\grafo.dot";
-            String fileOutputPath = System.getProperty("user.dir")+"\\grafo1.jpg";
-            //ejecutable dot, -T, formato, ejecucion, entrada
-            String [] cmd = {ruta,"-Tpng",fileInputPath,"-o",fileOutputPath}; //Comando de apagado en windows
-            Runtime.getRuntime().exec(cmd);
-            
-        }
-        catch(Exception ex){
-            System.out.println("resulta que tampoco es windows");
-        }   
+         
     }
 }

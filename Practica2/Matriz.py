@@ -23,9 +23,6 @@ class Matriz():
 		NODOLETRA=NodoMatriz()
 		# NODOLETRA=[]
 		NODOLETRA.titulo=usuario[0]
-		print usuario[0]
-		print cad[1]
-		print cad[0]
 		# NODOLETRA=[titulo=u]
 		NODORAIZ=NodoMatriz()
 		# NODORAIZ=[]
@@ -43,105 +40,116 @@ class Matriz():
 			# NODODOMINIO=[titulo=dom.com, abajo=NODORAIZ[titulo=user@dom.com]]
 			NODOLETRA.derecha=NODORAIZ
 			# NODOLETRA=[titulo=u,derecha=NODORAIZ[titulo=user@dom.com]]
-			print "esta virgen"
+			print "matriz creada"
 			return True
 		else:
-			print "ya tiene uno"
-			#posee al menos 1 dato
+			print "ya tiene al menos uno uno"
 			punteroDominio=self.raiz
-			# punteroDominio=[derecha=NODODOMINIO,abajo=NODOLETRA]
 			punteroLetra=self.raiz
-			# punteroLetra=[derecha=NODODOMINIO,abajo=NODOLETRA]
+			print "comprobando la existencia del nodo letra"
 			while punteroLetra.abajo!=None:
-				# consulta si existe la letra
 				punteroLetra=punteroLetra.abajo
-				# asigna el punteroLetra como el de abajo
-				while punteroLetra.derecha!=None:
-					# evalua si existe el nodo a la derecha
-					punteroLetra=punteroLetra.derecha
-					# asigna el valor del puntero al nodo
-					if punteroLetra.titulo.split("@")[1]==cad[1]:
-						# no solo se encontro que existe la letra, sino tambien el dominio
-						while punteroLetra.profundo!=None:
-							# mientras no se encuentre lo profundo de la lista
-							punteroLetra=punteroLetra.profundo
-						# se llego a lo mas profundo de la lista anidada
-						punteroLetra.profundo=NODORAIZ
-						# se llego a lo mas profundo, y se guarda alli
-						return True
-				# existia la letra, mas no el dominio
-				punteroLetra.derecha=NODORAIZ
-				# no existe el nodo a la derecha: o no existe el dominio, o no con esa letra
-				while punteroDominio.derecha!=None:
-					# ahora: a buscar si existe el dominio
-					punteroDominio=punteroDominio.derecha
-					# asigna al puntero derecho
-					if punteroDominio.titulo==cad[1]:
-						# si existe el dominio
-						while punteroDominio.abajo!=None:
-							# mientras el valor de abajo exista
-							punteroDominio=punteroDominio.abajo
-						punteroDominio.abajo=NODORAIZ
-						return True
-				# no existe el dominio, a crearlo
-				punteroDominio.derecha=NODODOMINIO
-				NODODOMINIO.abajo=NODORAIZ
-				return True
-			# no existe la letra, a crearla
+				if punteroLetra.titulo==usuario[0]:
+					print "el nodo coincide con la letra del usuario"
+					while punteroLetra.derecha!=None:
+						punteroLetra=punteroLetra.derecha
+						if punteroLetra.titulo.split("@")[1]==cad[1]:
+							print " existe el dominio, a indexarlo"
+							while punteroLetra.profundo!=None:
+								punteroLetra = punteroLetra.profundo
+							punteroLetra.profundo=NODORAIZ
+							"perfectamente indexado"
+							return True
+					print "no existe relacion letra-dominio, consultando por dominio"
+					while punteroDominio.derecha!=None:
+						punteroDominio=punteroDominio.derecha
+						if punteroDominio.titulo==cad[1]:
+							print"el dominio parece si existir, indexando"
+							while punteroDominio.abajo!=None:
+								punteroDominio=punteroDominio.abajo
+							punteroDominio.abajo=NODORAIZ
+							print "correctamente indexado"
+							return True
+					print "no existe el dominio, creandolo y relacionandolo"
+					punteroDominio.derecha=NODODOMINIO
+					NODODOMINIO.abajo=NODORAIZ
+					return True
+			print " parece que no existe la letra"
 			punteroLetra.abajo=NODOLETRA
 			NODOLETRA.derecha=NODORAIZ
-			# ahora a verificar si existe el dominio
+
+			print "consultando la existencia del dominio"
 			while punteroDominio.derecha!=None:
-				# mientras hayan punteros derechos
 				punteroDominio=punteroDominio.derecha
 				if punteroDominio.titulo==cad[1]:
-					# verificar si el puntero dominio es similar a la cadena ingresada
-						while punteroDominio.abajo!=None:
-							# llegar hasta el final
-							punteroDominio=punteroDominio.abajo
-						punteroDominio.abajo=NODORAIZ
-						return True
-			# no existe ni dominio ni letra, lo cual es raro 
-			return False
+					print "se encontro el dominio"
+					while punteroDominio.abajo!=None:
+						punteroDominio=punteroDominio.abajo
+					print "encontrando el ultimo nodo, guardando"
+					punteroDominio.abajo=NODORAIZ
+					return True
+			print "no se encontro ni letra ni dominio"
+			punteroDominio.derecha=NODODOMINIO
+			NODODOMINIO.abajo=NODORAIZ
+			print "creado dominio y letra"
+			return True
 
-	def consultaLetra(self,letra):
+
+	def consultaLetra(self,titulo):
 		if self.raiz!=None:
-			aux=self.raiz.abajo
-			while aux.abajo!=None:
-				if aux.titulo==letra:
-					cadena= " "
-					while aux.derecha!=None:
-						profundo=aux
-						cadena=cadena+"-"+aux.titulo
-						while profundo.profundo!=None:
-							profundo=profundo.profundo
-							cadena=cadena+","+profundo.titulo
-						aux=aux.derecha
-					return "lista encontrada :" +cadena
-				aux=aux.abajo
-			return "no existe indice con esa letra"
+			print "la matriz tiene datos"
+			letra= self.raiz
+			cad=""
+			print "consultando"
+			while letra.abajo!=None:
+				letra=letra.abajo
+				if letra.titulo==titulo:
+					print "parece que se encontraron resultados"
+					while letra.derecha!=None:
+						letra=letra.derecha
+						print letra.titulo
+						cad=cad+","+letra.titulo
+						if letra.profundo!=None:
+							aux=letra
+							print "existen datos profundos"
+							while aux.profundo!=None:
+								aux=aux.profundo
+								cad=cad+","+aux.titulo
+								print aux.titulo
+					return cad
+			print "no coinciden los datos"
+			return "no existe esta letra"
 		else:
-			return "la matriz esta vacia"
-	def consultarDominio(self,letra):
-		if self.raiz!=None:
-			aux=self.raiz.derecha
-			while aux.derecha!=None:
-				if aux.titulo==letra:
-					cadena= " "
-					while aux.abajo!=None:
-						profundo=aux
-						cadena=cadena+"-"+aux.titulo
-						while profundo.profundo!=None:
-							profundo=profundo.profundo
-							cadena=cadena+","+profundo.titulo
-						aux=aux.abajo
-					return "lista encontrada :" +cadena
-				aux=aux.derecha
-			return "no existe indice con esa letra"
-		else:
+			print "pooped"
 			return "la matriz esta vacia"
 
-
+	def consultarDominio(self,titulo):
+		if self.raiz!=None:
+			print "la matriz tiene datos"
+			letra= self.raiz
+			cad=""
+			print "consultando"
+			while letra.derecha!=None:
+				letra=letra.derecha
+				if letra.titulo==titulo:
+					print "parece que se encontraron resultados"
+					while letra.abajo!=None:
+						letra=letra.abajo
+						print letra.titulo
+						cad=cad+","+letra.titulo
+						if letra.profundo!=None:
+							aux=letra
+							print "existen datos profundos"
+							while aux.profundo!=None:
+								aux=aux.profundo
+								cad=cad+","+aux.titulo
+								print aux.titulo
+					return cad
+			print "no coinciden los datos"
+			return "no existe este dominio"
+		else:
+			print "pooped"
+			return "la matriz esta vacia"
 
 
 

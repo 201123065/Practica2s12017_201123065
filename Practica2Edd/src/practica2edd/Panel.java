@@ -11,10 +11,12 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
+import java.awt.Image;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
+import javax.swing.ImageIcon;
 import static practica2edd.Fusion.webClient;
 
 /**
@@ -24,7 +26,9 @@ import static practica2edd.Fusion.webClient;
 public class Panel extends javax.swing.JFrame {
     private int valor;
     private int funcion;
+    private String fileInputPath;
     public Panel() {
+        imagen();
         initComponents();
         valor=0;
         Agregar.setVisible(false);
@@ -119,10 +123,10 @@ public class Panel extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Buscar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Borrar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Dominio)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Borrar)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
@@ -215,7 +219,8 @@ public class Panel extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -229,9 +234,7 @@ public class Panel extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -310,10 +313,18 @@ public class Panel extends javax.swing.JFrame {
                 break;
             default:
                 break;
-                
         }
+        Graphviz grafo = new Graphviz();
+        grafo.Imagen("cadena");
+        imagen();
     }//GEN-LAST:event_AgregarActionPerformed
-
+    private void imagen(){
+        String ruta =System.getProperty("user.dir")+"/grafo.dot.png";
+        System.out.println(ruta);
+        ImageIcon ii = new  ImageIcon(getClass().getResource(ruta));
+        ImageIcon grafiti = new ImageIcon(ii.getImage().getScaledInstance(jLabel2.getWidth(), jLabel2.getHeight(), Image.SCALE_DEFAULT));
+        jLabel2.setIcon(grafiti);
+    }
     private void BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarActionPerformed
         switch(funcion){
             case 0:

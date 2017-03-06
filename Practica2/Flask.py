@@ -14,7 +14,7 @@ cola=Cola()
 matriz=Matriz()
 
 class WS():
-	# METODOS DE LA LISTA
+#LISTA
 	# INSERTAR
 	@app.route('/insertar_lista',methods=['POST'])
 	def insertar_lista():
@@ -35,7 +35,7 @@ class WS():
 			return "borrado satisfactoriamente"
 		else:
 			return "el elemento no se ha encontrado"
-	# METODOS DE LA PILA 
+#PILA 
 	# PUSH
 	@app.route('/push',methods=['POST'])
 	def push():
@@ -50,7 +50,7 @@ class WS():
 		else:
 			return "valor pop: "+str(valor)
 
-	# METODOS DE LA COLA
+#COLA
 	# QUEQUE
 	@app.route('/queque',methods=['POST'])
 	def queque():
@@ -65,7 +65,7 @@ class WS():
 		else:
 			return "valor dequeque: "+str(valor)
 
-	# MATRIZ
+# MATRIZ
 	# AGREGAR VALOR
 	@app.route('/addMat',methods=['POST'])
 	def addMat():
@@ -82,23 +82,19 @@ class WS():
 	@app.route('/bydomain',methods=['POST'])
 	def byDomain():
 		return matriz.consultarDominio(request.form['nombre'])
+	@app.route('/del_val',methods=['POST'])
+	def delVal():
+		if matriz.eliminarDato(request.form['nombre']):
+			return "elemento eliminado con exito"
+		else:
+			return "el elemento no existia en la matriz"
 
-	@app.route('/recuperar_lista')
-	def recuperar_lista():
-		lista.consultar()
+# INDEX
 	@app.route('/')
 	def index():
 		context=""
 		return render_template('index.html')
 
-	@app.route('/rentemp')
-	def template():
-		return render_template('index.html')
-
-	@app.route('/param')
-	def params():
-		p= request.args.get('params','vacio')
-		return 'el parametro es {}'.format(p)
 
 	if __name__=='__main__':
 		app.run(debug=True)

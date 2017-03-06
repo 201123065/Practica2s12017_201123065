@@ -151,5 +151,41 @@ class Matriz():
 			print "pooped"
 			return "la matriz esta vacia"
 
+	def eliminarDato(self,titulo):
+		if self.raiz!=None:
+			aux=self.raiz
+			while aux.abajo!=None:
+				aux=aux.abajo
+				if aux.titulo==titulo[0]:
+					while aux.derecha!=None:
+						previo = aux
+						aux=aux.derecha
+						if aux.titulo==titulo:
+							if aux.profundo==None:
+								previo.derecha=aux.derecha
+							else:
+								val=aux.profundo
+								val.derecha=aux.derecha
+								previo.derecha=val
+							return True
+						if aux.profundo!=None:
+							tmp=aux
+							while tmp.profundo!=None:
+								tempo=tmp
+								tmp=tmp.profundo
+								if tmp.titulo==titulo:
+									tempo.profundo=tmp.profundo
+									return True
+		return False
+
+
+
+
+
+
+
+
+
+
 
 

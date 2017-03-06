@@ -27,14 +27,15 @@ public class Panel extends javax.swing.JFrame {
     private int valor;
     private int funcion;
     private String fileInputPath;
+    private Graphviz grafo;
     public Panel() {
-        imagen();
         initComponents();
         valor=0;
         Agregar.setVisible(false);
         Buscar.setVisible(false);
         Borrar.setVisible(false);
         Dominio.setVisible(false);
+        grafo = new Graphviz();
     }
 
     @SuppressWarnings("unchecked")
@@ -60,8 +61,6 @@ public class Panel extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel2.setText("jLabel2");
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 153));
 
@@ -314,24 +313,24 @@ public class Panel extends javax.swing.JFrame {
             default:
                 break;
         }
-        Graphviz grafo = new Graphviz();
         grafo.Imagen("cadena");
-        imagen();
-    }//GEN-LAST:event_AgregarActionPerformed
-    private void imagen(){
-        String ruta =System.getProperty("user.dir")+"/grafo.dot.png";
-        System.out.println(ruta);
-        ImageIcon ii = new  ImageIcon(getClass().getResource(ruta));
-        ImageIcon grafiti = new ImageIcon(ii.getImage().getScaledInstance(jLabel2.getWidth(), jLabel2.getHeight(), Image.SCALE_DEFAULT));
+        
+        String ruta ="/grafo.dot.png";
+        jLabel2.removeAll();
+        ii = new  ImageIcon(getClass().getResource(ruta));
+        grafiti = new ImageIcon(ii.getImage().getScaledInstance(jLabel2.getWidth(), jLabel2.getHeight(), Image.SCALE_DEFAULT));
         jLabel2.setIcon(grafiti);
-    }
+        
+    }//GEN-LAST:event_AgregarActionPerformed
+    ImageIcon ii;
+    ImageIcon grafiti;
     private void BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarActionPerformed
         switch(funcion){
             case 0:
                 openswitch("borrar_en_lista");
                 break;
             case 1:
-                openswitch("eliminar_mat");
+                openswitch("del_val");
             case 2:
                 openswitch("dequeque");
                 break;
@@ -352,7 +351,7 @@ public class Panel extends javax.swing.JFrame {
     }//GEN-LAST:event_BuscarActionPerformed
 
     private void DominioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DominioActionPerformed
-        // TODO add your handling code here:
+        openswitch("bydomain");
     }//GEN-LAST:event_DominioActionPerformed
     
     

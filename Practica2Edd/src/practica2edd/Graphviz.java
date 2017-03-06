@@ -13,8 +13,7 @@ public class Graphviz {
     public void Imagen(String cadena){
         try {
             //raiz donde se encuentra el grafo
-            System.out.println(System.getProperty("user.dir")+"/grafo.dot");
-            String fileInputPath = System.getProperty("user.dir")+"/grafo.dot";
+            String fileInputPath = System.getProperty("user.dir")+"/src/grafo.dot";
             //ejecutable dot, -T, formato, ejecucion, entrada
             String [] cmd = {"/usr/local/bin/dot","-T","png", "-O",fileInputPath}; //Comando de apagado en windows
             Runtime.getRuntime().exec(cmd);
